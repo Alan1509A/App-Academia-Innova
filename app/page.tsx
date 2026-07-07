@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  Menu, X, ChevronRight, Monitor, PenTool, Cpu, 
-  BookOpen, Code, Terminal, CheckCircle, ArrowRight,
-  MonitorPlay, Briefcase, Zap, Target, Compass, Eye,
-  LucideIcon
+  Menu, X, ChevronRight, Monitor, Cpu, 
+  BookOpen, Terminal, CheckCircle, ArrowRight,
+  MonitorPlay, Zap, Target, Compass, Eye
 } from 'lucide-react';
 
 // Tipos para el componente Button
@@ -33,7 +32,7 @@ const Button = ({ children, variant = 'primary', className = '', ...props }: But
 
 // Tipos para el componente ServiceCard
 interface ServiceCardProps {
-  icon: LucideIcon;
+  icon: React.ElementType;
   title: string;
   items: string[];
   colorClass: string;
@@ -61,6 +60,13 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Estado para el formulario de contacto
+  const [formData, setFormData] = useState({
+    nombre: '',
+    correo: '',
+    servicio: ''
+  });
+
   // Manejar el scroll para cambiar el estilo del navbar
   useEffect(() => {
     const handleScroll = () => {
@@ -76,6 +82,21 @@ export default function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Función para enviar mensaje por WhatsApp
+  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // REEMPLAZA ESTE NÚMERO POR EL TUYO (código de país + número, sin el signo +)
+    const numeroWhatsApp = "5215500000000"; 
+    
+    // Crear el mensaje personalizado
+    const mensaje = `Hola Academia Innova, mi nombre es ${formData.nombre}. Mi correo es ${formData.correo}. Me interesa el servicio de: ${formData.servicio || 'Información General'}. Me gustaría recibir más detalles.`;
+    
+    // Crear la URL de WhatsApp y abrirla en una nueva pestaña
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
   };
 
   const services = [
@@ -123,11 +144,10 @@ export default function App() {
       {/* Navegación */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+          
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('home')}>
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-              <MonitorPlay className="text-white w-6 h-6" />
-            </div>
+            <img src="/logo.png" alt="Logo Academia Innova" className="h-10 w-auto" />
             <div>
               <h1 className={`text-xl font-bold leading-tight ${isScrolled ? 'text-gray-900' : 'text-blue-900'}`}>Academia</h1>
               <p className={`text-sm font-semibold tracking-widest uppercase leading-tight ${isScrolled ? 'text-blue-600' : 'text-blue-700'}`}>Innova</p>
@@ -161,7 +181,6 @@ export default function App() {
 
       {/* Hero Section */}
       <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        {/* Fondos decorativos */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-green-100/40 rounded-full blur-3xl"></div>
         
@@ -237,7 +256,6 @@ export default function App() {
               </div>
             </div>
             
-            {/* Elemento visual para la sección nosotros */}
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-tr from-blue-100 to-green-50 p-8 shadow-inner border border-gray-100 flex items-center justify-center">
                  <div className="grid grid-cols-2 gap-4 w-full h-full">
@@ -283,10 +301,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* CTA / Contacto Section */}
+      {/* Contacto Section con Funcionalidad de WhatsApp */}
       <section id="contacto" className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-blue-900"></div>
-        {/* Patrón de fondo */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
         
         <div className="container mx-auto px-6 lg:px-12 relative z-10">
@@ -297,17 +314,36 @@ export default function App() {
             </p>
             
             <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
-              <form className="grid sm:grid-cols-2 gap-4" onSubmit={(e) => e.preventDefault()}>
-                <input type="text" placeholder="Tu nombre" className="px-4 py-3 rounded-lg bg-white/90 border-0 text-gray-900 focus:ring-2 focus:ring-blue-400 outline-none w-full" />
-                <input type="email" placeholder="Tu correo electrónico" className="px-4 py-3 rounded-lg bg-white/90 border-0 text-gray-900 focus:ring-2 focus:ring-blue-400 outline-none w-full" />
-                <select defaultValue="" className="px-4 py-3 rounded-lg bg-white/90 border-0 text-gray-900 focus:ring-2 focus:ring-blue-400 outline-none w-full sm:col-span-2">
+              <form className="grid sm:grid-cols-2 gap-4" onSubmit={handleWhatsAppSubmit}>
+                <input 
+                  type="text" 
+                  required
+                  placeholder="Tu nombre" 
+                  value={formData.nombre}
+                  onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+                  className="px-4 py-3 rounded-lg bg-white/90 border-0 text-gray-900 focus:ring-2 focus:ring-blue-400 outline-none w-full" 
+                />
+                <input 
+                  type="email" 
+                  required
+                  placeholder="Tu correo electrónico" 
+                  value={formData.correo}
+                  onChange={(e) => setFormData({...formData, correo: e.target.value})}
+                  className="px-4 py-3 rounded-lg bg-white/90 border-0 text-gray-900 focus:ring-2 focus:ring-blue-400 outline-none w-full" 
+                />
+                <select 
+                  defaultValue="" 
+                  required
+                  onChange={(e) => setFormData({...formData, servicio: e.target.value})}
+                  className="px-4 py-3 rounded-lg bg-white/90 border-0 text-gray-900 focus:ring-2 focus:ring-blue-400 outline-none w-full sm:col-span-2"
+                >
                   <option value="" disabled>¿Qué servicio te interesa?</option>
-                  <option value="educacion">Educación (Cursos, Regularización)</option>
-                  <option value="tecnologia">Tecnología (Soporte, Diseño Web)</option>
-                  <option value="digitalizacion">Digitalización (Negocios, IA)</option>
+                  <option value="Educación (Cursos, Regularización)">Educación (Cursos, Regularización)</option>
+                  <option value="Tecnología (Soporte, Diseño Web)">Tecnología (Soporte, Diseño Web)</option>
+                  <option value="Digitalización (Negocios, IA)">Digitalización (Negocios, IA)</option>
                 </select>
                 <button type="submit" className="sm:col-span-2 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-lg transition-colors shadow-lg flex items-center justify-center gap-2 text-lg">
-                  Solicitar Información <ChevronRight className="w-5 h-5" />
+                  Solicitar Información por WhatsApp <ChevronRight className="w-5 h-5" />
                 </button>
               </form>
             </div>
@@ -335,16 +371,23 @@ export default function App() {
                <span className="italic font-medium text-gray-400">"Aprende hoy. Innova mañana."</span>
             </div>
 
-            <div className="flex justify-end gap-6">
-              <a href="#" className="hover:text-white transition-colors">Facebook</a>
-              <a href="#" className="hover:text-white transition-colors">Instagram</a>
-              <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+            <div className="flex flex-col md:items-end gap-2">
+              <span className="text-sm font-semibold text-gray-400 mb-1">Síguenos:</span>
+              <div className="flex gap-4">
+                {/* REEMPLAZA ESTOS LINKS POR LOS DE TUS REDES REALES */}
+                <a href="https://facebook.com/tu-pagina-real" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a>
+                <a href="https://instagram.com/tu-pagina-real" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+                <a href="https://linkedin.com/in/tu-perfil-real" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+              </div>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; {new Date().getFullYear()} Academia Innova. Todos los derechos reservados.</p>
-            <div className="flex gap-4 mt-4 md:mt-0">
+            <div className="flex flex-col mb-4 md:mb-0">
+              <p>&copy; {new Date().getFullYear()} Academia Innova. Todos los derechos reservados.</p>
+              <p className="mt-1 text-gray-400">Desarrollado por <span className="text-white font-medium">Alan Martínez</span></p>
+            </div>
+            <div className="flex gap-4">
               <a href="#" className="hover:text-white">Aviso de Privacidad</a>
               <a href="#" className="hover:text-white">Términos y Condiciones</a>
             </div>
