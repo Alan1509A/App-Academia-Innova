@@ -4,11 +4,19 @@ import React, { useState, useEffect } from 'react';
 import { 
   Menu, X, ChevronRight, Monitor, PenTool, Cpu, 
   BookOpen, Code, Terminal, CheckCircle, ArrowRight,
-  MonitorPlay, Briefcase, Zap, Target, Compass, Eye
+  MonitorPlay, Briefcase, Zap, Target, Compass, Eye,
+  LucideIcon
 } from 'lucide-react';
 
+// Tipos para el componente Button
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'outline';
+  className?: string;
+}
+
 // Componente de Botón
-const Button = ({ children, variant = 'primary', className = '', ...props }) => {
+const Button = ({ children, variant = 'primary', className = '', ...props }: ButtonProps) => {
   const baseStyle = "px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2";
   const variants = {
     primary: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1",
@@ -23,8 +31,16 @@ const Button = ({ children, variant = 'primary', className = '', ...props }) => 
   );
 };
 
+// Tipos para el componente ServiceCard
+interface ServiceCardProps {
+  icon: LucideIcon;
+  title: string;
+  items: string[];
+  colorClass: string;
+}
+
 // Componente de Tarjeta de Servicio
-const ServiceCard = ({ icon: Icon, title, items, colorClass }) => (
+const ServiceCard = ({ icon: Icon, title, items, colorClass }: ServiceCardProps) => (
   <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
     <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${colorClass} group-hover:scale-110 transition-transform duration-300`}>
       <Icon className="w-7 h-7" />
@@ -54,7 +70,7 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
