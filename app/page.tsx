@@ -132,7 +132,7 @@ export default function App() {
   };
 
   // REEMPLAZA ESTE NÚMERO POR EL TUYO (código de país + número, sin el signo +)
-  const NUMERO_WHATSAPP = "5215500000000"; 
+  const NUMERO_WHATSAPP = "5552485628"; 
 
   // Función para enviar mensaje de clientes (Formulario de Contacto)
   const handleClientSubmit = (e: React.FormEvent) => {
