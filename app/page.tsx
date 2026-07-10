@@ -114,7 +114,7 @@ export default function App() {
   const [collabData, setCollabData] = useState({ nombre: '', contacto: '', especialidad: '', aportacion: '' });
 
   // REEMPLAZA ESTE NÚMERO POR EL TUYO
-  const NUMERO_WHATSAPP = "5215500000000"; 
+  const NUMERO_WHATSAPP = "5552485628"; 
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
