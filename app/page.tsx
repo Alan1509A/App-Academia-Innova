@@ -32,7 +32,7 @@ interface LegalModalProps {
   children: React.ReactNode;
 }
 
-// Interfaz para los docentes (sin ubicación)
+// Interfaz para los docentes 
 interface Docente {
   id: string;
   nombre: string;
@@ -141,7 +141,7 @@ export default function App() {
   const [collabData, setCollabData] = useState({ nombre: '', contacto: '', especialidad: '', aportacion: '' });
 
   // REEMPLAZA ESTE NÚMERO POR EL TUYO
-  const NUMERO_WHATSAPP = "5215500000000"; 
+  const NUMERO_WHATSAPP = "5645789049"; 
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -181,36 +181,38 @@ export default function App() {
     {
       id: "alan-martinez",
       nombre: "Alan Martínez",
-      rol: "Director y Docente Experto",
+      rol: "Director y Docente",
       // Aquí está el enlace de la foto. Puedes cambiar esto por "/foto-alan.jpg" cuando subas tu foto a la carpeta public
-      foto: "https://ui-avatars.com/api/?name=Alan+Martinez&background=eff6ff&color=2563eb&size=200",
+      foto: "/foto-alan2.jpg",
       formacion: "Especialista en Tecnologías de la Información y Desarrollo Digital",
-      especialidades: ["Desarrollo Web", "Inteligencia Artificial Aplicada", "Ofimática y Herramientas Digitales"],
-      materias: ["Computación básica", "IA aplicada", "Diseño web", "Microsoft Office"],
+      especialidades: ["Matematicas, Desarrollo Web", "Inteligencia Artificial Aplicada", "Ofimática y Herramientas Digitales"],
+      materias: ["Algebra, Aritmetica, Computación básica", "IA aplicada", "Diseño web", "Microsoft Office"],
       modalidad: "Individual y Grupal (100% Online)",
-      idiomas: ["Español (Nativo)", "Inglés (Técnico)"],
-      presentacion: "¡Hola! Soy Alan, apasionado por la tecnología, la innovación y la digitalización. Creo firmemente que la educación es la herramienta más poderosa para transformar el futuro de las personas. \n\nMi objetivo en Academia Innova no es solo enseñar a usar herramientas, sino desarrollar un pensamiento crítico y tecnológico en mis estudiantes. Con años de experiencia en el entorno digital, he diseñado mis clases para que sean dinámicas, prácticas y, sobre todo, aplicables al mundo real, ya sea para mejorar en la escuela, conseguir un mejor empleo o digitalizar un negocio.",
+      idiomas: ["Español (Nativo)"],
+      presentacion: "Soy Alan Eduardo, apasionado por la tecnología, la innovación y la digitalización. Creo firmemente que la educación es la herramienta más poderosa para transformar el futuro de las personas. \n\nMi objetivo en Academia Innova no es solo enseñar a usar herramientas, sino desarrollar un pensamiento crítico y tecnológico en mis estudiantes. Con experiencia en el entorno digital, he diseñado mis clases para que sean dinámicas, prácticas y, sobre todo, aplicables al mundo real, ya sea para mejorar en la escuela, conseguir un mejor empleo o digitalizar un negocio.",
       horarios: "Lunes a Viernes: 4:00 PM - 8:00 PM (Horario flexible bajo disponibilidad)",
-      precio: "Desde $150 MXN / hora",
+      precio: "Desde $100 MXN / hora",
       redes: {
-        linkedin: "https://linkedin.com/in/tu-perfil",
+        linkedin: "www.linkedin.com/in/alan-eduardo-martinez-pérez-1514541a6",
       }
     },
     {
-      id: "proximamente",
-      nombre: "Nuevos Talentos",
-      rol: "Múltiples Especialidades",
-      foto: "",
-      formacion: "Diversas disciplinas académicas",
-      especialidades: ["Matemáticas", "Física", "Química", "Idiomas"],
-      materias: ["Álgebra", "Cálculo", "Inglés", "Ciencias Exactas"],
+      id: "diana abella",
+      nombre: "Diana Abella",
+      rol: "Docente fundadora y especialista en Gerencia de Proyectos",
+      foto: "/foto-diana.jpg",
+      formacion: "Profesional en Trabajo Social, Especialista en Gerencia de Proyectos y Formacion Academica en Desarrollo Sostenible y Responsabilidad Social",
+      especialidades: ["Gestion de Proyectos Sociales", "Intervencion Comunitaria y acompañamiento psicosocial", "Comunicacion efectiva y liderazgo"],
+      materias: ["Formulacion de Proyectos Sociales: de la idea a la accion"],
       modalidad: "Online",
-      idiomas: ["Varios"],
-      presentacion: "",
+      idiomas: ["Español (Nativo)"],
+      presentacion: "Trabajadora social y Especialista en Gerencia de Proyectos con experiencia en diseño e implementacion de proyectos sociales y procesos formativos dirigidos a profesionales y comunidades. Experiencia en docencia en diplomados, diseño curricular y facilitacion de formacion presencial y virtual, con enfoque de derechos humanos, genero y participacion social. Orientada al fortalecimiento de capacidades, la articulacion interinstitucional y la generacion de impacto social sostenible.",
       horarios: "Por definir",
-      precio: "Por definir",
-      proximamente: true
-    }
+      precio: "350 MXN",
+      redes: {
+        linkedin: "https://www.linkedin.com/in/diana-abella/",
+      }
+    }, 
   ];
 
   const materias = [
@@ -458,7 +460,7 @@ export default function App() {
       <section id="docentes" className="py-20 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Conoce a nuestros docentes</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Conoce a nuestros docentes fundadores</h2>
             <div className="w-20 h-1 bg-blue-600 mx-auto mb-6 rounded-full"></div>
             <p className="text-lg text-gray-600">
               Aprende de especialistas apasionados por la enseñanza y expertos en su área. Nuestro equipo crece día con día.
