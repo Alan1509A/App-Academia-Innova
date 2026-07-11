@@ -184,7 +184,7 @@ export default function App() {
       rol: "Director y Docente",
       // Aquí está el enlace de la foto. Puedes cambiar esto por "/foto-alan.jpg" cuando subas tu foto a la carpeta public
       foto: "/foto-alan2.jpg",
-      formacion: "Especialista en Tecnologías de la Información y Desarrollo Digital",
+      formacion: "Licenciatura en Ciencias de la Informatica en Instituto Politecnico Nacional - UPIICSA",
       especialidades: ["Matematicas, Desarrollo Web", "Inteligencia Artificial Aplicada", "Ofimática y Herramientas Digitales"],
       materias: ["Algebra, Aritmetica, Computación básica", "IA aplicada", "Diseño web", "Microsoft Office"],
       modalidad: "Individual y Grupal (100% Online)",
